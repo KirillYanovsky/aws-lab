@@ -17,17 +17,18 @@ module "ecs" {
   }
 }
 # ---------------------------------------
-#data "aws_iam_role" "ecs_task_execution_role" { name = "ecsTaskExecutionRole" }
+
+data "aws_iam_role" "ecs_task_execution_role" { name = "ecsTaskExecutionRole" }
 
 resource "aws_ecs_task_definition" "this" {
   container_definitions = jsonencode([{
     essential    = true,
-    image        = "nginx:latest",
+    image        = "300732800381.dkr.ecr.eu-central-1.amazonaws.com/web-app:latest"
     name         = "web-app",
     portMappings = [{ containerPort = 80 }],
   }])
-  cpu = 256
-  #execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
+  cpu                      = 256
+  execution_role_arn       = data.aws_iam_role.ecs_task_execution_role.arn
   family                   = "web-app-tasks"
   memory                   = 512
   network_mode             = "awsvpc"

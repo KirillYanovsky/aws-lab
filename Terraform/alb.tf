@@ -49,13 +49,13 @@ data "aws_route53_zone" "this" {
   name = "aws.yanovsky.cc"
 }
 
-module "acm" {
-  source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
+# module "acm" {
+#   source  = "terraform-aws-modules/acm/aws"
+#   version = "~> 4.0"
 
-  domain_name = "lab.aws.yanovsky.cc"
-  zone_id     = data.aws_route53_zone.this.id
-}
+#   domain_name = "lab.aws.yanovsky.cc"
+#   zone_id     = data.aws_route53_zone.this.id
+# }
 
 module "wildcard_cert" {
   source  = "terraform-aws-modules/acm/aws"
@@ -69,7 +69,7 @@ resource "aws_route53_record" "record" {
   zone_id = data.aws_route53_zone.this.id
   name    = "lab"
   type    = "CNAME"
-  records = ["http://${aws_lb.alb_ecs.dns_name}"]
+  records = [aws_lb.alb_ecs.dns_name]
   ttl     = 60
 
   depends_on = [aws_lb.alb_ecs]

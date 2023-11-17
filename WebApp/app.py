@@ -9,6 +9,7 @@ S3_REGION = 'eu-central-1'
 # S3_ACCESS_KEY = ''
 # S3_SECRET_KEY = ''
 
+
 s3 = boto3.client('s3', region_name=S3_REGION, aws_access_key_id=S3_ACCESS_KEY, aws_secret_access_key=S3_SECRET_KEY)
 
 @app.route('/')
@@ -27,4 +28,4 @@ def get_s3_logo_url(logo_key):
     return url
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=80)
