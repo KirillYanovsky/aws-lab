@@ -12,12 +12,13 @@ phases:
       - cd WebApp
       - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
       - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
-      - docker ps -a
+      - docker images -a
       - echo $IMAGE_REPO_NAME:$IMAGE_TAG:$AWS_DEFAULT_REGION:$AWS_ACCOUNT_ID
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
+      - echo $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
 #AWS_DEFAULT_REGION eu-central-1
 #AWS_ACCOUNT_ID 300732800381
