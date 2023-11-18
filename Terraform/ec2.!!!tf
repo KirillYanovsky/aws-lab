@@ -30,6 +30,7 @@ data "aws_ami" "windows" {
 
 module "ec2_linux" {
   source = "terraform-aws-modules/ec2-instance/aws"
+  version      = "5.5.0"
 
   name = "Linux-instance"
 
@@ -49,6 +50,7 @@ module "ec2_linux" {
 
 module "ec2_windows" {
   source = "terraform-aws-modules/ec2-instance/aws"
+  version      = "5.5.0"
 
   name = "Windows-instance"
 

@@ -59,7 +59,7 @@ data "aws_route53_zone" "this" {
 
 module "wildcard_cert" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
+  version = "4.5.0"
 
   domain_name = "*.aws.yanovsky.cc"
   zone_id     = data.aws_route53_zone.this.id
