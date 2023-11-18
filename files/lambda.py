@@ -1,13 +1,15 @@
 # Lambda Function to STOP/START EC2 Instances with specific TAG
 
-import boto3
 import os
 
-EC2TAG_KEY    = os.environ["EC2TAG_KEY"]
-EC2TAG_VALUE  = os.environ["EC2TAG_VALUE"]
-EC2_ACTION    = os.environ["EC2_ACTION"]
+import boto3
 
-ec2 = boto3.client('ec2')
+EC2TAG_KEY = os.environ["EC2TAG_KEY"]
+EC2TAG_VALUE = os.environ["EC2TAG_VALUE"]
+EC2_ACTION = os.environ["EC2_ACTION"]
+
+ec2 = boto3.client("ec2")
+
 
 def get_list_of_servers_with_tag(EC2TAG_KEY, EC2TAG_VALUE, EC2_ACTION):
     server_ids = []
@@ -18,23 +20,18 @@ def get_list_of_servers_with_tag(EC2TAG_KEY, EC2TAG_VALUE, EC2_ACTION):
 
     response = ec2.describe_instances(
         Filters=[
-            {
-             'Name'  : "tag:" + EC2TAG_KEY,
-             'Values': [EC2TAG_VALUE]
-            },
-            {
-             'Name'  : "instance-state-name",
-             'Values': instance_state_values
-            }
+            {"Name": "tag:" + EC2TAG_KEY, "Values": [EC2TAG_VALUE]},
+            {"Name": "instance-state-name", "Values": instance_state_values},
         ]
     )
-    if len(response['Reservations']) > 0:
-        for reservation in response['Reservations']:
+    if len(response["Reservations"]) > 0:
+        for reservation in response["Reservations"]:
             for instance in reservation["Instances"]:
-                server_ids.append(instance['InstanceId'])       
+                server_ids.append(instance["InstanceId"])
     return server_ids
 
-#-----------------START HERE----------------------------------------------------
+
+# -----------------START HERE----------------------------------------------------
 def lambda_handler(event, context):
     try:
         server_ids = get_list_of_servers_with_tag(EC2TAG_KEY, EC2TAG_VALUE, EC2_ACTION)
@@ -52,4 +49,6 @@ def lambda_handler(event, context):
         print("Error occuried! Error Message: " + str(error))
 
     return "DONE"
-#-------------------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------------------

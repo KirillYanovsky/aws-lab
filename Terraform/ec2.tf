@@ -29,17 +29,17 @@ data "aws_ami" "windows" {
 }
 
 module "ec2_linux" {
-  source = "terraform-aws-modules/ec2-instance/aws"
-  version      = "5.5.0"
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "5.5.0"
 
   name = "Linux-instance"
 
-  instance_type = "t2.micro"
-  ami           = data.aws_ami.ubuntu.id
-  key_name      = "mac-key"
-  monitoring    = true
+  instance_type          = "t2.micro"
+  ami                    = data.aws_ami.ubuntu.id
+  key_name               = "mac-key"
+  monitoring             = true
   vpc_security_group_ids = [module.vpc.default_security_group_id, aws_security_group.allow_internal.id]
-  subnet_id              = module.vpc.private_subnets[0] 
+  subnet_id              = module.vpc.private_subnets[0]
 
   tags = {
     Name      = "AWS-lab-Linux"
@@ -49,17 +49,17 @@ module "ec2_linux" {
 }
 
 module "ec2_windows" {
-  source = "terraform-aws-modules/ec2-instance/aws"
-  version      = "5.5.0"
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "5.5.0"
 
   name = "Windows-instance"
 
-  instance_type = "t2.micro"
-  ami           = data.aws_ami.windows.id
-  key_name      = "mac-key"
-  monitoring    = true  
+  instance_type          = "t2.micro"
+  ami                    = data.aws_ami.windows.id
+  key_name               = "mac-key"
+  monitoring             = true
   vpc_security_group_ids = [module.vpc.default_security_group_id, aws_security_group.allow_internal.id]
-  subnet_id              = module.vpc.private_subnets[0] 
+  subnet_id              = module.vpc.private_subnets[0]
 
   tags = {
     Name      = "AWS-lab-Windows"

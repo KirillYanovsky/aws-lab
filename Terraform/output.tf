@@ -22,4 +22,3 @@ output "default_security_group_id" {
 #   description = "The ID of the security group created by default on VPC creation"
 #   value       = aws_security_group.allow_internal.id
 #}
-
