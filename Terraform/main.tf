@@ -44,7 +44,7 @@ resource "aws_security_group" "allow_internal" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # local.ssh_allow_cidrs
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -77,7 +77,7 @@ resource "aws_security_group" "allow_http" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"] # local.ssh_allow_cidrs
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

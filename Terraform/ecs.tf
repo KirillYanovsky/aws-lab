@@ -62,4 +62,3 @@ resource "aws_ecs_service" "this" {
 output "ecs_cluster_id" {
   value = module.ecs.cluster_id
 }
-

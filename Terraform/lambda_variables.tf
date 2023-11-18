@@ -5,7 +5,7 @@ variable "name" {
 
 variable "stop_cron_schedule" {
   description = "Cron Expression when to STOP Servers in UTC Time zone"
-  default     = "cron(18 10 * * ? *)"
+  default     = "cron(18 00 * * ? *)"
 }
 
 variable "start_cron_schedule" {

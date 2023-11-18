@@ -82,6 +82,7 @@ resource "aws_iam_policy" "lambda" {
                   "ec2:StopInstances",
                   "ec2:StartInstances"
               ],
+              
               "Resource": "*"
           }
       ]
