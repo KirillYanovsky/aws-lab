@@ -6,8 +6,8 @@ app = Flask(__name__)
 # AWS S3 configuration
 S3_BUCKET_NAME = 'bucket-for-aws-lab'
 S3_REGION = 'eu-central-1'
-# S3_ACCESS_KEY = ''
-# S3_SECRET_KEY = ''
+S3_ACCESS_KEY = ''
+S3_SECRET_KEY = ''
 
 
 s3 = boto3.client('s3', region_name=S3_REGION, aws_access_key_id=S3_ACCESS_KEY, aws_secret_access_key=S3_SECRET_KEY)
