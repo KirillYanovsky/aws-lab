@@ -44,7 +44,6 @@ resource "aws_lb_listener" "ecs_listener_http" {
   }
 }
 
-
 data "aws_route53_zone" "this" {
   name = "aws.yanovsky.cc"
 }
