@@ -21,11 +21,17 @@ phases:
       - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
       - printf '[{"name":"web-app","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > imagedefinitions.json
       - printf '[{"name":"web-app","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > ../imagedefinitions.json
+      - printf '[{"name":"web-app","imageUri":"%s"}]' $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG > ~/imagedefinitions.json
       - ls -la
-      - pwd
-      - cd ../
+      - pwd      
 artifacts:
-  files: imagedefinitions.json
+#  files: imagedefinitions.json
+  files: 
+    - '**/*'
+    base-directory: base_location
+    name: BuildArtif
+    discard-paths: no
+
 #AWS_DEFAULT_REGION eu-central-1
 #AWS_ACCOUNT_ID 300732800381
 #IMAGE_TAG latest
