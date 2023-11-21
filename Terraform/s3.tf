@@ -48,5 +48,5 @@ resource "aws_s3_object" "lab_object" {
   bucket = aws_s3_bucket.lab_bucket.bucket
   key    = "aws-lab/logo1.jpeg"
   source = "../files/logo1.jpeg"
-  acl    = "public-read"
+  #acl    = "public-read"
 }
